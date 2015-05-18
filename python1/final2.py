@@ -15,6 +15,7 @@ argc=len(sys.argv)
 if argc != 2:
   print("Word counter")
   print("Error: expecting 1 argument, a filename")
+  sys.exit()
 
 contents=[]
 wordcounts={}
@@ -26,6 +27,7 @@ try:
   fh.close()
 except:
   print("Error: Unable to open specified file, %s" %sys.argv[1])
+  sys.exit()
 
 #iterate through all words and count them
 for line in contents:
