@@ -1,0 +1,12 @@
+{
+"A00000001":{"name":"Flynn Mackie", "title":"Senior VP of Engineering","reports":[A00000002,A00000005] },
+"A00000002":{"name":"Clarence Thomas", "title":"VP of Design","reports":[A00000003] },
+"A00000003":{"name":"Randall Cosmo", "title":"Director of Design","reports":[A00000004] },
+"A00000004":{"name":"Wendy Wood", "title":"Senior Designer","reports":[] },
+"A00000005":{"name":"Gina Smith", "title":"VP of Engineering","reports":[A00000006] },
+"A00000006":{"name":"Quinn Trent", "title":"Director of Engineering","reports":[A00000007,A00000009] },
+"A00000007":{"name":"Jake Wade", "title":"Frontend Manager","reports":[00000008] },
+"00000008":{"name":"Lynn Freeman", "title":"Junior Engineer","reports":[] },
+"A00000009":{"name":"Leila Dundie", "title":"Backend Manager","reports":[A000000010] },
+"A000000010":{"name":"Peter Burke", "title":"Senior Software Engineer","reports":[] }
+}
