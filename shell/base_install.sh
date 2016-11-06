@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+#install php, mysql, apache, ssl, python, mysql python
+
+function rhel-install-epel {
+  pushd /tmp 2>/dev/null
+  wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  #ls *.rpm
+  rpm -ivh epel-release-*rpm
+  popd 2>/dev/null
+}
+
+function install-base {
+yum install -y wget vim-enhanced gcc gcc-c++
+#rhel-install-epel
+yum -y install epel-release
+yum install -y \
+            python-pip
+
+pip --upgrade pip
+}
+function install-mariadb {
+  yum install -y mariadb mariadb-server MySQL-python
+  pip install -r python-requirements.txt
+  systemctl enable mariadb.service
+  systemctl start mariadb.service
+}
+function install-mongodb {
+  pip install python-pymongo
+}
+function install-apache {
+  yum -y install httpd mod_ssl
+  systemctl enable httpd.service
+  #systemctl start httpd.service
+}
+function install-php {
+  yum install -y php php-gd php-mbstring php-mysql
+}
+
+install-base
+install-mariadb
+install-apache
+install-php
