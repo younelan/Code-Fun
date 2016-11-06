@@ -4,7 +4,7 @@ import json
 import urllib
 import re
 
-endpoint = "http://www.younelan.com/linkedin/endpoint.php"
+endpoint = "http:/localhost/hierarchy/endpoint.php"
 
 
 def get_hierarchy(employee_id, level=0):

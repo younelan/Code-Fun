@@ -1,0 +1,57 @@
+Jan 20 03:25:08 host1 logrotate: ALERT exited abnormally with [1]
+Jan 20 03:25:08 host1 run-parts(/etc/cron.daily)[20447]: finished logrotate
+Jan 20 03:26:21 host1 anacron[28969]: Job 'cron.daily' terminated
+Jan 20 03:26:21 host1 anacron[28969]: Normal exit (1 job run)
+Jan 20 03:30:01 host1 CROND[31462]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Jan 20 03:30:01 host1 CROND[31461]: (root) CMD (/var/system/bin/sys-cmd -F > /dev/null 2>&1)
+Oct 30 03:20:01 host1 systemd: Started Session 10366 of user root.
+Oct 30 03:20:01 host1 systemd: Starting Session 10366 of user root.
+Oct 30 03:29:02 host1 systemd: Removed slice user-0.slice.
+Oct 30 03:29:02 host1 systemd: Stopping user-0.slice.
+Oct 30 03:30:01 host1 systemd: Created slice user-0.slice.
+Oct 30 03:30:01 host1 systemd: Starting user-0.slice.
+Oct 30 03:30:01 host1 systemd: Started Session 10367 of user root.
+Oct 30 03:30:01 host1 systemd: Starting Session 10367 of user root.
+Oct 30 03:30:01 host1 systemd: Removed slice user-0.slice.
+Oct 30 03:30:01 host1 systemd: Stopping user-0.slice.
+Oct 30 23:57:41 host1 systemd: Stopping Postfix Mail Transport Agent...
+Oct 30 23:57:42 host1 systemd: Starting Postfix Mail Transport Agent...
+Oct 30 23:57:43 host1 systemd: Started Postfix Mail Transport Agent.
+Oct 31 00:00:01 host1 systemd: Created slice user-0.slice.
+Oct 31 00:00:01 host1 systemd: Starting user-0.slice.
+Oct 31 00:00:01 host1 systemd: Started Session 10514 of user root.
+Oct 31 00:00:01 host1 systemd: Starting Session 10514 of user root.
+Oct 31 00:00:01 host1 systemd: Removed slice user-0.slice.
+Oct 31 00:00:01 host1 systemd: Stopping user-0.slice.
+Oct 31 00:01:01 host1 systemd: Created slice user-0.slice.
+Oct 31 00:01:01 host1 systemd: Starting user-0.slice.
+Oct 31 00:01:01 host1 systemd: Started Session 10515 of user root.
+Oct 31 00:01:01 host1 systemd: Starting Session 10515 of user root.
+Oct 31 00:01:01 host1 systemd: Removed slice user-0.slice.
+Oct 31 00:01:01 host1 systemd: Stopping user-0.slice.
+Nov  2 10:50:01 host1 systemd: Starting user-0.slice.
+Nov  2 10:50:01 host1 systemd: Started Session 10950 of user root.
+Nov  2 10:50:01 host1 systemd: Starting Session 10950 of user root.
+Nov  2 10:50:01 host1 systemd: Removed slice user-0.slice.
+Nov  2 10:50:01 host1 systemd: Stopping user-0.slice.
+Nov  2 11:00:01 host1 systemd: Created slice user-0.slice.
+Nov  2 11:00:01 host1 systemd: Starting user-0.slice.
+Nov  2 11:00:01 host1 systemd: Started Session 10951 of user root.
+Nov  2 11:00:01 host1 systemd: Starting Session 10951 of user root.
+Nov  2 11:00:01 host1 systemd: Removed slice user-0.slice.
+Nov  2 11:00:01 host1 systemd: Stopping user-0.slice.
+Nov  2 11:01:01 host1 systemd: Created slice user-0.slice.
+Nov  2 11:01:01 host1 systemd: Starting user-0.slice.
+Nov  2 11:01:01 host1 systemd: Started Session 10952 of user root.
+Nov  2 11:01:01 host1 systemd: Starting Session 10952 of user root.
+Nov  2 11:01:01 host1 systemd: Removed slice user-0.slice.
+Nov  2 11:01:01 host1 systemd: Stopping user-0.slice.
+Nov  2 11:10:01 host1 systemd: Created slice user-0.slice.
+Nov  2 11:10:01 host1 systemd: Starting user-0.slice.
+Nov  2 11:10:01 host1 systemd: Started Session 10953 of user root.
+Nov  2 11:10:01 host1 systemd: Starting Session 10953 of user root.
+Nov  2 11:10:02 host1 systemd: Removed slice user-0.slice.
+Nov  2 11:10:02 host1 systemd: Stopping user-0.slice.
+
+
+
