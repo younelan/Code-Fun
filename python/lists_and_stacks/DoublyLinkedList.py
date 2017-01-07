@@ -41,6 +41,7 @@ class LinkedList(object):
       self.tail=None
  
     return retval
+
   def traverse(self):
     current=self.head
     i=0
@@ -99,6 +100,15 @@ class LinkedList(object):
      self.tail=new_node
      self.size += 1
 
+  def get_size(self):
+    current = self.head
+    list_size=0
+
+    while current:
+      current=current.next_node
+      list_size += 1
+ 
+    return list_size 
 ll=LinkedList()
 
 ll.unshift(1)
@@ -127,7 +137,7 @@ ll.unshift(1)
 ll.push(4)
 print "-- Forward Traversal of list"
 ll.traverse()
-
+print "Size:", ll.get_size()
 print "-- Backward Traversal of list: "
 ll.back_traverse()
 print "Size: " , ll.size 
