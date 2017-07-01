@@ -44,7 +44,9 @@ class BinarySearchTree(object):
     def get_max(self, current=None):
         if current==None:
             current=self.root
-        if current.right_node:
+        if not current:
+            return None
+        elif current.right_node:
             return self.get_max(current.right_node)
         else:
             return current.data
@@ -52,32 +54,59 @@ class BinarySearchTree(object):
     def get_min(self, current=None):
         if current==None:
             current=self.root
-        if current.left_node:
+        elif current.left_node:
             return self.get_min(current.left_node)
         else:
             return current.data
+
+    def remove_node(self, data, node):
+        if not node:
+           return node
+        if data < node.data: #if data smaller, look at left tree
+           node.left_node = self.remove_node(data, node.left_node)
+        elif data > node.data: #if data is greater, look at right tree
+           node.right_node = self.remove_node(data, node.right_node)
+        else: #we are at the matching node
+           if not node.left_node and not node.right_node:
+           #no children, delete the node
+               debug("No Children, deleting node")
+               del node 
+               return None
+
+    def remove(self,data):
+        if self.root:
+            self.root=self.remove_node(data,self.root)
 
     def inorder_traverse(self,current=None):
         if not current:
             print "In order Traversal of tree:"
             current = self.root 
 
-        if current.left_node:
-            self.inorder_traverse(current.left_node)
+        else:
+            if current.left_node:
+                self.inorder_traverse(current.left_node)
 
-        print "  -- " , current.data
+            print "  -- " , current.data
 
-        if current.right_node:
-            self.inorder_traverse(current.right_node)
+            if current.right_node:
+                self.inorder_traverse(current.right_node)
 
 bst=BinarySearchTree()
 
+"""
 bst.insert(5)
 bst.insert(15)
 bst.insert(6)
 bst.insert(50)
 bst.insert(500)
 bst.insert(30)
+"""
+
+bst.insert(10)
+bst.insert(13)
+bst.insert(5)
+bst.insert(1)
+bst.remove(3)
 
 print "Max:" , bst.get_max()
 print "Min:" , bst.get_min()

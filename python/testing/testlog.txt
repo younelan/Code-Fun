@@ -1,0 +1,4 @@
+Running teardown function
+Running teardown function
+Logging from test
+Running teardown function
