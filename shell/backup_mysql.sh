@@ -4,11 +4,12 @@
 USER='root'
 PASS=''
 DEST=""
+TODAY=$(date +"%Y-%m-%d")
 
 mkdir -p $DEST
 
 #similar to:
-#mysqldump -u root -pradnelac --lock-tables=false --triggers --all-databases>all-20161106.sql
+#mysqldump -u root -p$pass --lock-tables=false --triggers --all-databases>all-$TODAY.sql
 
 for dbname in $(mysql -N -u $USER -p$PASS -e "select distinct table_schema from information_schema.tables where table_schema not in ('INFORMATION_SCHEMA','mysql','PERFORMANCE_SCHEMA')  ")
 do
