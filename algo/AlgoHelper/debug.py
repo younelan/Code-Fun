@@ -52,9 +52,13 @@ def script_header(line):
 	print_color("_"*(60),color="WARNING")
 	print_color(" "*(30-offset)+line,color="WARNING")
 	print_color("_"*60,color="WARNING")
-def script_section(line):
+def test_header(line):
 	offset=len(line)//2
 	line = "\n%s %s %s" % ("*"*(29-offset), line, "*"*(29-offset))
+	print_color(line,color="WARNING")
+def section_header(line):
+	offset=len(line)//2
+	line = "\n%s %s %s" % ("-"*(29-offset), line, "-"*(29-offset))
 	print_color(line,color="WARNING")
 class DebugConsole():
 	def __init__(self,color="OKCYAN"):

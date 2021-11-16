@@ -10,7 +10,9 @@ def print_node(root):
 		rightval = repr(root.right.value) if root.right else " None"
 		idval = repr(root.value)
 
-		print("  <<Node %s %s %s>> " % (idval,leftval,rightval))
+		print("  << %s %s  %s %s  %s %s >> " % (get_color_str("Node:",color="FAIL"),get_color_str(idval,color="BOLD"),
+                                              get_color_str("Left:",color="FAIL"),get_color_str(leftval,color="BOLD"),
+                                              get_color_str("Right:",color="FAIL"),get_color_str(rightval,color="BOLD")))
 def output_tree(root, depth=0,isleft=0):
     # Write your code here.
     if isleft==0:
@@ -31,12 +33,10 @@ def output_tree(root, depth=0,isleft=0):
 def build_tree(tree,root):
     nodes={}
     for item in tree:
-        print(item)
+        #print(item)
         nodes[item["id"]]=BinarySearchTree(item["value"])
     for node in tree:
         if node["left"]:
-            print(node)
-
             new_node = nodes[node["left"] ]
             nodes[ node["id"] ].left = new_node
         if node["right"]:
