@@ -1,0 +1,113 @@
+body {
+
+background-color:#ffa;
+
+}
+#wrapper {
+	position:absolute;
+	top:0px;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	width:800px;
+	height:550px;
+	margin:auto;
+}
+#header {
+	top:0px;
+	border:1px solid black;
+	width:710px;
+	height:20px;
+	background-color:darkblue;
+	color:white;
+}
+#footer {
+	position:absolute;
+	border:1px solid black;
+	top:522px;
+	width:710px;
+	height:18px;
+	background-color:white;
+}
+#nav,#game {
+	background-color:#8f8;
+	border:1px solid green;
+}
+#nav {
+	position:absolute;
+	background-color:green;
+	left:0px;
+	top:22px;
+	width:150px;
+	height:500px;
+}
+#game {
+	position:relative;
+	background-color:#4c4;
+	top:0px;
+	left:150px;
+	height:500px;
+	width:560px;
+}
+.card {
+	background-color:white;
+	color:black;
+	height:60px;
+	width:30px;
+	border-radius: 5px;
+	border: 2px solid #444;
+}
+.cardback {
+	background-color:red;
+	color:white;
+	height:60px;
+	width:30px;
+	border-radius: 5px;
+	border: 2px solid #444;
+}
+
+.player {
+	list-style-type: none;
+	padding:10px;
+	line-height:30px;
+	text-align:center;
+}
+.player li {
+		color:red;
+		font-weight:bold;
+}
+#player1 {
+	position:absolute;
+	top:80px;
+	left:20px;
+	width:50px;
+}
+#player2 {
+	position:absolute;
+	top:80px;
+	right:20px;
+	width:50px;
+}
+#player3,#player4 {
+	position:absolute;
+	top:0px;
+	left:100px;
+	width:350px;
+	text-align:center;
+}
+#player3 li, #player4 li {
+	display:inline-block;
+}
+#player4 {
+	top:400px;
+}
+#table {
+	position:absolute;
+	top:150px;
+	left:150px;
+	width:230px;
+	text-align:center;
+}
+#table li {
+	display:inline-block;
+}
