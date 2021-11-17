@@ -16,73 +16,15 @@ def removeDuplicatesFromLinkedList(linkedList):
 		cur_ptr=cur_ptr.next
 	return linkedList
 
-def print_list(head):
-	ptr=head
-	vals = []
 
-	while ptr.next:
-		vals.append(str(ptr.value))
-		ptr = ptr.next
-	if ptr:
-		vals.append(str(ptr.value))
+from AlgoHelper import debug,testing,linkedlist
+tests = testing.load_tests("linkedListDupe")
 
-	print( " -> ".join(vals) )
-
-tests = [
-
-	{
-	  "linkedList": {
-		  "head": "1",
-		  "nodes": [
-		    {"id": "1", "next": "9", "value": 1},
-		    {"id": "9", "next": "11", "value": 9},
-		    {"id": "11", "next": "15", "value": 11},
-		    {"id": "15", "next": "16", "value": 15},
-		    {"id": "16", "next": "17", "value": 16},
-		    {"id": "17", "next": None, "value": 17}
-		  ]
-		}
-	},
-	{
-	  "linkedList": {
-	    "head": "1",
-	    "nodes": [
-	      {"id": "1", "next": "1-2", "value": 1},
-	      {"id": "1-2", "next": "1-3", "value": 1},
-	      {"id": "1-3", "next": "2", "value": 1},
-	      {"id": "2", "next": "3", "value": 3},
-	      {"id": "3", "next": "3-2", "value": 4},
-	      {"id": "3-2", "next": "3-3", "value": 4},
-	      {"id": "3-3", "next": "4", "value": 4},
-	      {"id": "4", "next": "5", "value": 5},
-	      {"id": "5", "next": "5-2", "value": 6},
-	      {"id": "5-2", "next": None, "value": 6}
-	    ]
-	  }
-	},
-	{
-	  "linkedList": {
-	    "head": "1",
-	    "nodes": [
-	      {"id": "1", "next": "1-2", "value": 1},
-	      {"id": "1-2", "next": "1-3", "value": 1},
-	      {"id": "1-3", "next": "1-4", "value": 1},
-	      {"id": "1-4", "next": "1-5", "value": 1},
-	      {"id": "1-5", "next": "4", "value": 1},
-	      {"id": "4", "next": "4-2", "value": 4},
-	      {"id": "4-2", "next": "5", "value": 4},
-	      {"id": "5", "next": "6", "value": 5},
-	      {"id": "6", "next": "6-2", "value": 6},
-	      {"id": "6-2", "next": None, "value": 6}
-	    ]
-	  }
-	}
-]
-
+debug.script_header("Remove Duplicates from linked List")
 idx=0
 for case in tests:
     idx+=1
-    print ("\n%s test %i *********" % ("*"*20 , idx))
+    debug.test_header ("Test %i" % ( idx))
     items={}
     for item in case["linkedList"]["nodes"]:
     	items[item["id"]] = LinkedList(item["value"])
@@ -92,9 +34,8 @@ for case in tests:
 
     head = items[ case["linkedList"]["head"] ]
 
-    print("-- Original List ")
-    print_list(head)
-    print("-- No Dupe List ")
+    vars={}
+    vars["Original"]=linkedlist.get_list_str(head)
+    vars["No Dupes"]=linkedlist.get_list_str(removeDuplicatesFromLinkedList(head))
 
-    print_list(removeDuplicatesFromLinkedList(head))
-
+    debug.print_variables(vars)

@@ -96,3 +96,20 @@ def debug_out():
 	debug_console.show()
 def flush():
 	debug_console.flush()
+def print_variables(vars,row_size=3):
+	var_strs=[]
+
+	output=""
+	idx=0
+	for key,val in vars.items():
+		idx+=1
+		cur_str=" %s: %s "%(get_color_str(key,"BOLD"),get_color_str(val,"HEADER"))
+		var_strs.append(cur_str)
+		if idx%row_size==0:
+			output += "     ".join(var_strs)+"\n"
+			var_strs=[]
+
+	output += "     ".join(var_strs)
+
+	print(output)
+
