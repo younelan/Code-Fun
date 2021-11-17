@@ -17,25 +17,20 @@ def removeDuplicatesFromLinkedList(linkedList):
 	return linkedList
 
 
-from AlgoHelper import debug,testing,linkedlist
+from AlgoHelper import console,testing,linkedlist
 tests = testing.load_tests("linkedListDupe")
 
-debug.script_header("Remove Duplicates from linked List")
+console.script_header("Remove Duplicates from linked List")
 idx=0
 for case in tests:
     idx+=1
-    debug.test_header ("Test %i" % ( idx))
-    items={}
-    for item in case["linkedList"]["nodes"]:
-    	items[item["id"]] = LinkedList(item["value"])
-    for item in case["linkedList"]["nodes"]:
-    	if item["next"]:
-    		items[item["id"]].next = items[item["next"]]
-
-    head = items[ case["linkedList"]["head"] ]
-
-    vars={}
+    #console.test_header ("Test %i" % ( idx))
+    head,nodes=linkedlist.load_list(case["linkedList"]["nodes"],case["linkedList"]["head"])
+   
+    vars={"Test":idx}
     vars["Original"]=linkedlist.get_list_str(head)
     vars["No Dupes"]=linkedlist.get_list_str(removeDuplicatesFromLinkedList(head))
 
-    debug.print_variables(vars)
+    console.print_variables(vars)
+
+

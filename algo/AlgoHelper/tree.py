@@ -1,4 +1,5 @@
-from debug import get_color_str
+from __future__ import absolute_import
+from .console import get_color_str
 class BinarySearchTree():
     def __init__(self, value):
         self.value = value

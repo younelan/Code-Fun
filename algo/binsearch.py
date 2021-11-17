@@ -38,32 +38,32 @@ def show_log():
 
 
 
-from AlgoHelper import debug,testing	
+from AlgoHelper import console,testing	
 script_name = "binSearch"
 tests = testing.load_tests(script_name)
 
-debug.script_header("BINARY SEARCH")
+console.script_header("BINARY SEARCH")
 idx=0
 for test in tests:
 	idx+=1
-	debug.test_header("Test %s" % idx)
+	console.test_header("Test %s" % idx)
 
 	array,target = test["array"],test["target"]
 
 	vars={}
 	vars["Array"]=array
-	debug.print_variables(vars)
+	console.print_variables(vars)
 
 	vars={"Target": idx} 
 	retval = binarySearch(array,target)
 
 	if "expect" in test:
 		color = "OKGREEN" if test["expect"]==retval else "FAIL"
-		vars["Returned"]=debug.get_color_str(retval,color)
+		vars["Returned"]=console.get_color_str(retval,color)
 		vars["Expect"]=retval
 	else:
 		vars["Returned"]=retval
-	debug.print_variables(vars)
+	console.print_variables(vars)
 	if idx in dodebug:
 		print("-- Debug: ")
 		show_log()
