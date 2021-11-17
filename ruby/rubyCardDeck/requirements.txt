@@ -1,0 +1,29 @@
+Requirements for a card game
+----------------------------
+
+functional
+----------
+f-001 - a developer should be able to use the deck class to write card games
+f-002 - a developer should be able to accomodate multiple type of card decks
+f-003 - a developer should be able to reset the card deck after it is created
+f-004 - a developer can shuffle the deck
+f-005 - a developer can find all cards of a certain type by using the getCardsByColumn Method
+f-006 - a developer can remove a card from a deck
+    f-006-A - The card can be removed from the top of the deck
+    f-006-B - The card can be removed from the bottom of the deck
+f-007 - a developer can add a card to the deck
+    f-007-A - The card can be added to the top of the deck
+    f-007-B - The card can be added to the bottom of the deck
+f-008 - a developer should be able to retrieve the whole deck
+f-009 - a developer should be able to pass a complete deck in the constructor
+
+testing
+------------
+t-001 - basic unit testing should be provided
+
+documentation
+-------------
+d-001 - a documentation should be provided to use the class
+d-002 - a sample using a moroccan card deck for the game ronda should be provided
+d-003 - a sample using a classic poker deck should be provided
+d-004 - a sample using the class as a basic shopping cart will be provided
