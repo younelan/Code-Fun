@@ -10,14 +10,21 @@ def inOrderTraverse(tree, array):
 	return retval
 
 def preOrderTraverse(tree, array):
-    # Write your code here.
-    pass
-
-
+	if not tree:
+    		return array
+	array.append(tree.value)
+	preOrderTraverse(tree.left,array)
+	preOrderTraverse(tree.right,array)
+ 
+	return array
+ 
 def postOrderTraverse(tree, array):
-    # Write your code here.
-    pass
-
+	if not tree:
+		return array
+	postOrderTraverse(tree.left,array)
+	postOrderTraverse(tree.right,array)
+	array.append(tree.value)
+	return array 
 
 from AlgoHelper import testing,tree,console
 
