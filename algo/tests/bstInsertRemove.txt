@@ -1,0 +1,51 @@
+[
+{
+  "classMethodsToCall": [
+    {
+      "arguments": [5],
+      "method": "insert"
+    },
+    {
+      "arguments": [15],
+      "method": "insert"
+    },
+    {
+      "arguments": [2],
+      "method": "insert"
+    },
+    {
+      "arguments": [5],
+      "method": "insert"
+    },
+    {
+      "arguments": [13],
+      "method": "insert"
+    },
+    {
+      "arguments": [22],
+      "method": "insert"
+    },
+    {
+      "arguments": [1],
+      "method": "insert"
+    },
+    {
+      "arguments": [14],
+      "method": "insert"
+    },
+    {
+      "arguments": [12],
+      "method": "insert"
+    },
+    {
+      "arguments": [10],
+      "method": "remove"
+    },
+    {
+      "arguments": [15],
+      "method": "contains"
+    }
+  ],
+  "rootValue": 10
+}
+]

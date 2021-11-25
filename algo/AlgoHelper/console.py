@@ -38,8 +38,12 @@ def get_color_str(line,color=None):
 		line = array_to_str(line)
 	if not isinstance(line,str):
 		line=repr(line)
-	output = TermColors[color]
+	if color in TermColors:
+		output = TermColors[color]
+	else:
+		output="FAIL"
 	output+=line
+	#print("Color",color)
 	output += TermColors["ENDC"]
 	return output
 def print_color(line,color=None):
@@ -67,7 +71,7 @@ class DebugConsole():
 	"""
 		append a line to the debug output
 	"""
-	def log(mystr,color=None):
+	def log(self,mystr,color=None):
 		if not color:
 			color=self.default_color
 		self.debugstrs.append([mystr,color])
@@ -80,7 +84,8 @@ class DebugConsole():
 		print logged debug lines
 	"""
 	def show(self):
-		for out in debugstrs:
+		#print(self.debugstrs)
+		for out in self.debugstrs:
 			print_color(out[0],color=out[1])
 
 		debugstrs=[]
@@ -88,10 +93,10 @@ class DebugConsole():
 #legacy for one line debug
 debug_console = DebugConsole()
 
-def debug(line):
-	debug_console.log(line)
-def log(line):
-	debug_console.log(line)
+def debug(line,color=None):
+	debug_console.log(line,color=color)
+def log(line,color=None):
+	debug_console.log(line,color=color)
 def debug_out():
 	debug_console.show()
 def flush():

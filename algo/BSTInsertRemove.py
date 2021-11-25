@@ -9,8 +9,6 @@ class BST:
         self.right = None
 
     def insert(self, value):
-        # Write your code here.
-        # Do not edit the return statement of this method.
         if isinstance(value,int):
            newnode=BST(value)
         else:
@@ -31,7 +29,6 @@ class BST:
         return self
 
     def output(self, depth=0):
-        # Write your code here.
         print("%s %s" % ("    "*(depth+1),self.value))
         newdepth=depth+1
         if self.left:
@@ -62,20 +59,20 @@ class BST:
             isrootnoode=True
 
         if value == self.value:
-            print("Removing",self.value)
+            debug("Removing %i" % self.value)
             if isrootnoode:
-                print("which is a root node")
+                debug("which is a root node")
                 if self.left and self.right:
-                    print("Both nodes are present")
+                    debug("Both nodes are present")
                     root=self.left
                     root.insert(self.right)
                     return root
                 elif self.left:
-                    print("only left is present")
+                    debug("only left is present")
                     root=self.left
                     return root
                 else:
-                    print("Only right is present")
+                    debug("Only right is present")
                     root=self.right
                     return root
 
@@ -107,72 +104,21 @@ class BST:
     def __repr__(self):
         return "<<Node %i>>" % self.value
 
-# root=BST(5)
-# root.insert(7)
-# print(root.right)
-# root.insert(8)
-# root.insert(18)
-# root.insert(4)
-# print(root.contains(7))
-# print(root.contains(11))
+from AlgoHelper import testing,tree,console
+def debug(str,color=None):
+    console.print_color("%s %s" % (color,str),color="OKGREEN")
+    console.log(str,color=color)
+    
+script_name = "bstInsertRemove"
+tests = testing.load_tests(script_name)
 
-tests=[
-{
-  "classMethodsToCall": [
-    {
-      "arguments": [5],
-      "method": "insert"
-    },
-    {
-      "arguments": [15],
-      "method": "insert"
-    },
-    {
-      "arguments": [2],
-      "method": "insert"
-    },
-    {
-      "arguments": [5],
-      "method": "insert"
-    },
-    {
-      "arguments": [13],
-      "method": "insert"
-    },
-    {
-      "arguments": [22],
-      "method": "insert"
-    },
-    {
-      "arguments": [1],
-      "method": "insert"
-    },
-    {
-      "arguments": [14],
-      "method": "insert"
-    },
-    {
-      "arguments": [12],
-      "method": "insert"
-    },
-    {
-      "arguments": [10],
-      "method": "remove"
-    },
-    {
-      "arguments": [15],
-      "method": "contains"
-    }
-  ],
-  "rootValue": 10
-}
-]
+console.script_header("BST INSERT/REMOVE")
 idx=0
 for case in tests:
     idx+=1
-    print ("%s test %i *********" % ("*"*20 , idx))
+    console.section_header ("test %i" % (idx))
     root=BST(case['rootValue'])
-    print("Root %s" %root)
+    tree.print_node(root)
     for method in case['classMethodsToCall']:
         if method["method"]=="insert":
             print("Insert %s " %(method["arguments"][0]))
@@ -181,9 +127,12 @@ for case in tests:
             print("Remove %s " %(method["arguments"][0]))
             newroot=root.remove(method["arguments"][0])
             root=newroot
-            print("New Root", newroot)
+            print("New Root: "),
+            tree.print_node( newroot)
         if method["method"]=="contains":
             print("Contains %s " %(method["arguments"][0]))
             root.contains(method["arguments"][0])
-
-        root.output()
+        if method in ["remove"]:
+            root.output()
+            
+        console.debug_out()
