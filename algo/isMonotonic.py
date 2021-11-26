@@ -9,51 +9,42 @@ def isMonotonic(array):
 		cur_element=array[el]
 		if cur_element>prev_element:
 			cur_direction=1
-			#print("  prev_direction: %s cur_direction %s" % (prev_direction,cur_direction))
+			debug("  prev_direction: %s cur_direction %s" % (prev_direction,cur_direction))
 			if prev_direction==-1:
 				#print("    Exiting, direction change")
 				return False
 			#print("%s>%s "%(cur_element,prev_element))
 		elif cur_element==prev_element:
 			cur_direction=0
-			#print("  prev_direction: %s cur_direction %s" % (prev_direction,cur_direction))
+			debug("  prev_direction: %s cur_direction %s" % (prev_direction,cur_direction))
 		else:
 			cur_direction=-1
-			#print("  prev_direction: %s cur_direction %s" % (prev_direction,cur_direction))
+			debug("  prev_direction: %s cur_direction %s" % (prev_direction,cur_direction))
 			if prev_direction==1:
 				#print("    Exiting, direction change")
 				return False			
-			#print("  %s<%s "%(cur_element,prev_element))
+			debug("  %s<%s "%(cur_element,prev_element))
 		prev_element=cur_element
 		if not prev_direction:
 			prev_direction = cur_direction
 	return True
 
-tests = [
-{
-  "array": [-1, -5, -10, -1100, -900, -1101, -1102, -9001],
-  "expect": False
-},
-{
-  "array": [-1, -5, -10, -1100, -1100, -1101, -1102, -9001],
-  "expect": False
-},
-{
-  "array": [1, 1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 7, 9, 10, 11],
-  "expect": False
-},
-{
-  "array": [-1, -1, -2, -3, -4, -5, -5, -5, -6, -7, -8, -7, -9, -10, -11],
-  "expect": False
+from AlgoHelper import testing,tree,console
+def debug(str,color=None):
+    console.print_color("%s %s" % (color,str),color="OKGREEN")
+    console.log(str,color=color)
+    
+script_name = "isMOnotonic"
+tests = testing.load_tests(script_name)
 
-}
-
-]
-
-testid=0
+console.script_header("Is Monotonic")
+idx=0
 for case in tests:
-	retval = isMonotonic(tests[testid]["array"])
+	idx+=1
+	console.section_header ("test %i" % (idx))
+
+	retval = isMonotonic(case["array"])
 	print("*"*10)
-	print(tests[testid])
-	print ("  == retval"),
-	print (retval)
+	console.print_color(case["array"])
+	print ("  == retval %s" % repr(retval))
+	#print (retval)
