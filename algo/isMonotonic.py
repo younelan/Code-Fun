@@ -31,7 +31,7 @@ def isMonotonic(array):
 
 from AlgoHelper import testing,tree,console
 def debug(str,color=None):
-    console.print_color("%s %s" % (color,str),color="OKGREEN")
+    #console.print_color("%s %s" % (color,str),color="OKGREEN")
     console.log(str,color=color)
     
 script_name = "isMOnotonic"
@@ -44,7 +44,6 @@ for case in tests:
 	console.section_header ("test %i" % (idx))
 
 	retval = isMonotonic(case["array"])
-	print("*"*10)
-	console.print_color(case["array"])
-	print ("  == retval %s" % repr(retval))
-	#print (retval)
+	case["returned"]=retval
+	console.print_variables(case)
+	console.debug_out()

@@ -88,7 +88,7 @@ class DebugConsole():
 		for out in self.debugstrs:
 			print_color(out[0],color=out[1])
 
-		debugstrs=[]
+		self.debugstrs=[]
 
 #legacy for one line debug
 debug_console = DebugConsole()
