@@ -1,13 +1,13 @@
 
 def inOrderTraverse(tree, array):
-	retval=[]
 	if not tree:
-		return retval
-	array+=inOrderTraverse(tree.left,array)
+    		return array
+	inOrderTraverse(tree.left,array)
 	array.append(tree.value)
-	array+=inOrderTraverse(tree.right,array)
-	array=retval
-	return retval
+	inOrderTraverse(tree.right,array)
+ 
+	return array
+ 
 
 def preOrderTraverse(tree, array):
 	if not tree:
