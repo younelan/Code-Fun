@@ -1,27 +1,26 @@
 [
     {
-    "queries": [3, 2, 1, 2, 6],
-    "expect": 17
+        "blueShirtSpeeds": [3, 6, 7, 2, 1],
+        "fastest": true,
+        "redShirtSpeeds": [5, 5, 3, 9, 2],
+        "expect": 32
     },
     {
-    "queries": [2, 1, 1, 1],
-    "expect": 6
-
+        "blueShirtSpeeds": [3, 6, 7, 2, 1],
+        "fastest": false,
+        "redShirtSpeeds": [5, 5, 3, 9, 2],
+        "expect": 25
     },
     {
-        "queries" : [1, 2, 4, 5, 2, 1]  ,
-        "expect" :  23 
+        "blueShirtSpeeds": [3, 3, 4, 6, 1, 2],
+        "fastest": false,
+        "redShirtSpeeds": [1, 2, 1, 9, 12, 3],
+        "expect": 30
     },
     {
-        "queries" : [25, 30, 2, 1]  ,
-        "expect" :   32
-    },
-    {
-        "queries" :  [1, 1, 1, 1, 1] ,
-        "expect" :   10
-    },
-    {
-        "queries":  [7, 9, 2, 3],
-        "expect":   19
+        "blueShirtSpeeds": [3, 3, 4, 6, 1, 2],
+        "fastest": true,
+        "redShirtSpeeds": [1, 2, 1, 9, 12, 3],
+        "expect": 37
     }
 ]
