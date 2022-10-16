@@ -1,0 +1,20 @@
+[
+    {
+        "words": ["this", "that", "did", "deed", "them!", "a"],
+        "expect": ["!", "a", "d", "d", "e", "e", "h", "i", "m", "s", "t", "t"]
+
+    },
+    {
+        "words": ["a", "abc", "ab", "boo"],
+        "expect": ["a", "b", "c", "o", "o"]
+
+    },
+    {
+        "words": ["!!!2", "234", "222", "432"],
+        "expect": ["!", "!", "!", "2", "2", "2", "3", "4"]
+    },
+    {
+        "words": ["this", "that", "they", "them", "their", "there", "time", "is"],
+        "expect": ["a", "e", "e", "h", "i", "m", "r", "s", "t", "t", "y"]
+    }
+]
