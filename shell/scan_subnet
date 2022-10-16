@@ -1,6 +1,12 @@
 #!/bin/sh
 
-subnet=192.168.1
+if [ $# -ne 0 ]
+then
+  echo "Subnet provided $1"
+  subnet=$1
+else
+  subnet=192.168.1
+fi
 printf "\nPinging network $subnet.1-$subnet.254\n\n"
 
 for addr in $(seq 1 254)
