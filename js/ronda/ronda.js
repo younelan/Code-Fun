@@ -232,34 +232,34 @@ var gameRules={
 game=new cardGame(gameRules)
 
 /*get cardHtml - abstract the creation of card */
-function getCardHtml(idx,suit,prefix="",suffix="gif") {
-	onclicktxt = " onclick='onGameClick(\"" + "t\"" + ",\"" + idx + suit + "\")' "
+function getCardHtml(player,idx,suit,prefix="",suffix="gif") {
+	onclicktxt = " onclick='onGameClick(\"" + player+"\"" + ",\"" + idx + suit + "\")' "
 	idtag = "id='card" + idx + suit + "'"
 	if (prefix) {
         imgtag = "<img " + onclicktxt + " src='"+prefix +   idx + suit + "."+suffix+"'>"
 		cardclass=""
+		tempHand += "<li " + " style='z-index: -70' class='card " + cardclass + "' " +idtag + ">" + imgtag + "</li>\n"
 	} else {
 		imgtag = idx+suit
 		cardclass = "textcard"
+		tempHand += "<li " + onclicktxt + " class='card " + cardclass + "' " +idtag + ">" + imgtag + "</li>\n"
 	}
 	// alert(imgtag)
-	tempHand += "<li " + onclicktxt + " class='card " + cardclass + "' " +idtag + ">" + imgtag + "</li>\n"
     return tempHand
 }
 /*called from the ui when the deal button is pressed */
-//
 function deal() {
 	/* get new cards */
 	game.deal()	
+	//prefix="./images/front/"
 
 	var prefix = (typeof prefix === 'undefined') ? '' : prefix;
-	//alert(game.getNumPlayers())
 	/* update the ui for the individual players */
 	for(i=0;i<game.getNumPlayers();i++ ) {
 		currentPile=game.getPile('player'+i)
 		tempHand=""
 		for(j=0;j<currentPile.length;j++) {
-			getCardHtml(currentPile[j][1],currentPile[j][0],prefix)
+			getCardHtml(i+1,currentPile[j][1],currentPile[j][0],prefix)
 		}
 		document.querySelector('#player'+(i+1)).innerHTML=tempHand
 
@@ -268,7 +268,7 @@ function deal() {
 	tempHand=''
 	currentPile=game.getPile('table')
 	for(j=0;j<currentPile.length;j++) {
-		getCardHtml(currentPile[j][1],currentPile[j][0],prefix)
+		getCardHtml(i+1,currentPile[j][1],currentPile[j][0],prefix)
 	}
 	document.querySelector('#table').innerHTML=tempHand
 
