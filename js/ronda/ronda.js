@@ -167,6 +167,7 @@ cardGame.prototype = {
 			}
 		}
 		this.currentHand++
+
 	},
 	/* returns the current number of players */
 	getNumPlayers:function() {
@@ -182,13 +183,13 @@ cardGame.prototype = {
 
 /* ronda game rules override */
 var gameRules={
-	cardValues:['A','2','3','4','5','6','7','S','C','R'],
+	cardValues:['1','2','3','4','5','6','7','8','9','r'],
 	cardNames:['As','Dos','3','4','5','6','7','Sauta','Cabal','Rey'],
-	suitValues:['G','B','C','S'],
+	suitValues:['d','k','g','s'],
 	suitNames:['Gold','Black','Cups','Sticks'],
 	shuffle:true,
 	forceRemove:true,
-	gameType:'3 Player game',
+	gameType:'4 Player game alternate',
 	dealerRules: {
 		'2 Player game':{
 			numPlayers:2,
@@ -230,18 +231,36 @@ var gameRules={
 /*initiate ronda game */
 game=new cardGame(gameRules)
 
-
+/*get cardHtml - abstract the creation of card */
+function getCardHtml(idx,suit,prefix="",suffix="gif") {
+	onclicktxt = " onclick='onGameClick(\"" + "t\"" + ",\"" + idx + suit + "\")' "
+	idtag = "id='card" + idx + suit + "'"
+	if (prefix) {
+        imgtag = "<img " + onclicktxt + " src='"+prefix +   idx + suit + "."+suffix+"'>"
+		cardclass=""
+	} else {
+		imgtag = idx+suit
+		cardclass = "textcard"
+	}
+	// alert(imgtag)
+	tempHand += "<li " + onclicktxt + " class='card " + cardclass + "' " +idtag + ">" + imgtag + "</li>\n"
+    return tempHand
+}
 /*called from the ui when the deal button is pressed */
+//
 function deal() {
 	/* get new cards */
 	game.deal()	
 
+	var prefix = (typeof prefix === 'undefined') ? '' : prefix;
+	alert(prefix)
+	//alert(game.getNumPlayers())
 	/* update the ui for the individual players */
 	for(i=0;i<game.getNumPlayers();i++ ) {
 		currentPile=game.getPile('player'+i)
 		tempHand=""
 		for(j=0;j<currentPile.length;j++) {
-			tempHand += "<li class='card'>" + currentPile[j][0] + currentPile[j][1] + "</li>\n"
+			getCardHtml(currentPile[j][1],currentPile[j][0],prefix)
 		}
 		document.querySelector('#player'+(i+1)).innerHTML=tempHand
 
@@ -250,9 +269,26 @@ function deal() {
 	tempHand=''
 	currentPile=game.getPile('table')
 	for(j=0;j<currentPile.length;j++) {
-		tempHand += "<li class='card'>" + currentPile[j][0] + currentPile[j][1] + "</li>\n"
+		getCardHtml(currentPile[j][1],currentPile[j][0],prefix)
 	}
 	document.querySelector('#table').innerHTML=tempHand
 
+	document.querySelectorAll('.card').forEach(function(item) {
+		item.addEventListener('click', function() {
+		  console.log(item.innerHTML);
+		});
+		 });
+
+	//console.log(tempHand)
+}
+function onGameClick(player,card) {
+	id="card"+card
+
+	message = "Player "+player+" plays "+card
+	document.querySelector('#footer').innerHTML=message
+
+	var elem = document.getElementById(id);
+	elem.remove()
+    //return elem.parentNode.removeChild(elem);
 }
 
