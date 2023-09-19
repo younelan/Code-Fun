@@ -253,7 +253,6 @@ function deal() {
 	game.deal()	
 
 	var prefix = (typeof prefix === 'undefined') ? '' : prefix;
-	alert(prefix)
 	//alert(game.getNumPlayers())
 	/* update the ui for the individual players */
 	for(i=0;i<game.getNumPlayers();i++ ) {
