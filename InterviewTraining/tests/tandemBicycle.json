@@ -1,0 +1,20 @@
+[
+    {
+        "testType": "function",
+        "functionName": "tandemBicycle",
+        "input": [[5, 5, 3, 9, 2], [3, 6, 7, 2, 1], true],
+        "expect": 32
+    },
+    {
+        "testType": "function",
+        "functionName": "tandemBicycle",
+        "input": [[5, 5, 3, 9, 2], [3, 6, 7, 2, 1], false],
+        "expect": 25
+    },
+    {
+        "testType": "function",
+        "functionName": "tandemBicycle",
+        "input": [[1, 2, 3, 4, 5], [5, 4, 3, 2, 1], true],
+        "expect": 21
+    }
+]
