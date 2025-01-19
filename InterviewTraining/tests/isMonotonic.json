@@ -1,0 +1,44 @@
+[
+    {
+        "testType": "function",
+        "functionName": "isMonotonic",
+        "input": [[-1, -5, -10, -1100, -900, -1101, -1102, -9001]],
+        "expect": false
+    },
+    {
+        "testType": "function",
+        "functionName": "isMonotonic",
+        "input": [[-1, -5, -10, -1100, -1100, -1101, -1102, -9001]],
+        "expect": false
+    },
+    {
+        "testType": "function",
+        "functionName": "isMonotonic",
+        "input": [[1, 1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 7, 9, 10, 11]],
+        "expect": false
+    },
+    {
+        "testType": "function",
+        "functionName": "isMonotonic",
+        "input": [[-1, -1, -2, -3, -4, -5, -5, -5, -6, -7, -8, -7, -9, -10, -11]],
+        "expect": false
+    },
+    {
+        "testType": "function",
+        "functionName": "isMonotonic",
+        "input": [[1, 2, 2, 3]],
+        "expect": true
+    },
+    {
+        "testType": "function",
+        "functionName": "isMonotonic",
+        "input": [[6, 5, 4, 4]],
+        "expect": true
+    },
+    {
+        "testType": "function",
+        "functionName": "isMonotonic",
+        "input": [[1, 3, 2]],
+        "expect": false
+    }
+]
