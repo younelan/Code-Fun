@@ -1,0 +1,26 @@
+[
+    {
+        "testType": "function",
+        "functionName": "binarySearch",
+        "input": [[1, 2, 3, 4, 5, 6, 7, 8, 9], 5],
+        "expect": 4
+    },
+    {
+        "testType": "function",
+        "functionName": "binarySearch",
+        "input": [[1, 2, 3, 4, 5, 6, 7, 8, 9], 1],
+        "expect": 0
+    },
+    {
+        "testType": "function",
+        "functionName": "binarySearch",
+        "input": [[1, 2, 3, 4, 5, 6, 7, 8, 9], 9],
+        "expect": 8
+    },
+    {
+        "testType": "function",
+        "functionName": "binarySearch",
+        "input": [[1, 2, 3, 4, 5, 6, 7, 8, 9], 10],
+        "expect": -1
+    }
+]

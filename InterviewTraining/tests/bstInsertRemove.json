@@ -1,0 +1,57 @@
+[
+    {
+        "testType": "tree",
+        "className": "BST",
+        "method": "insert",
+        "tree": {
+            "nodes": [
+                {"id": "10", "value": 10, "left": "5", "right": "15"},
+                {"id": "5", "value": 5, "left": "2", "right": "5-2"},
+                {"id": "2", "value": 2, "left": null, "right": null},
+                {"id": "5-2", "value": 5, "left": null, "right": null},
+                {"id": "15", "value": 15, "left": null, "right": "22"},
+                {"id": "22", "value": 22, "left": null, "right": null}
+            ],
+            "rootId": "10"
+        },
+        "expect": {
+            "nodes": [
+                {"id": "10", "value": 10, "left": "5", "right": "15"},
+                {"id": "5", "value": 5, "left": "2", "right": "5-2"},
+                {"id": "2", "value": 2, "left": null, "right": null},
+                {"id": "5-2", "value": 5, "left": null, "right": null},
+                {"id": "15", "value": 15, "left": null, "right": "22"},
+                {"id": "22", "value": 22, "left": null, "right": "25"},
+                {"id": "25", "value": 25, "left": null, "right": null}
+            ],
+            "rootId": "10"
+        }
+    },
+    {
+        "testType": "tree",
+        "className": "BST",
+        "method": "remove",
+        "tree": {
+            "nodes": [
+                {"id": "10", "value": 10, "left": "5", "right": "15"},
+                {"id": "5", "value": 5, "left": "2", "right": "5-2"},
+                {"id": "2", "value": 2, "left": null, "right": null},
+                {"id": "5-2", "value": 5, "left": null, "right": null},
+                {"id": "15", "value": 15, "left": null, "right": "22"},
+                {"id": "22", "value": 22, "left": null, "right": null}
+            ],
+            "rootId": "10"
+        },
+        "expect": {
+            "nodes": [
+                {"id": "10", "value": 10, "left": "5", "right": "15"},
+                {"id": "5", "value": 5, "left": "2", "right": "5-2"},
+                {"id": "2", "value": 2, "left": null, "right": null},
+                {"id": "5-2", "value": 5, "left": null, "right": null},
+                {"id": "15", "value": 15, "left": null, "right": "22"},
+                {"id": "22", "value": 22, "left": null, "right": null}
+            ],
+            "rootId": "10"
+        }
+    }
+]
