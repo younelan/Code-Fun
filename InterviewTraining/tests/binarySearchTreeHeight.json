@@ -1,0 +1,29 @@
+[
+    {
+        "testType": "tree",
+        "functionName": "binarySearchTreeHeight",
+        "tree": {
+            "nodes": [
+                {"id": "A", "value": 1, "left": "B", "right": "C"},
+                {"id": "B", "value": 2, "left": null, "right": null},
+                {"id": "C", "value": 3, "left": null, "right": null}
+            ],
+            "rootId": "A"
+        },
+        "expect": 2
+    },
+    {
+        "testType": "tree",
+        "functionName": "binarySearchTreeHeight",
+        "tree": {
+            "nodes": [
+                {"id": "A", "value": 1, "left": "B", "right": "C"},
+                {"id": "B", "value": 2, "left": "D", "right": null},
+                {"id": "C", "value": 3, "left": null, "right": null},
+                {"id": "D", "value": 4, "left": null, "right": null}
+            ],
+            "rootId": "A"
+        },
+        "expect": 3
+    }
+]
