@@ -1,0 +1,8 @@
+[
+    {
+        "testType": "function",
+        "functionName": "arrayOfProducts",
+        "input": [[5, 1, 4, 2]],
+        "expect": [8, 40, 10, 20]
+    }
+]
