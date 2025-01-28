@@ -1,0 +1,26 @@
+[
+    {
+        "testType": "function",
+        "functionName": "minimumCharactersForWords",
+        "input": [["this", "that", "did", "deed", "them!", "a"]],
+        "expect": ["t", "h", "i", "s", "a", "d", "e", "m", "!"]
+    },
+    {
+        "testType": "function",
+        "functionName": "minimumCharactersForWords",
+        "input": [["a", "abc", "ab", "boo"]],
+        "expect": ["a", "b", "c", "o", "o"]
+    },
+    {
+        "testType": "function",
+        "functionName": "minimumCharactersForWords",
+        "input": [["!!!2", "234", "222", "432"]],
+        "expect": ["!", "!", "!", "2", "2", "2", "3", "4"]
+    },
+    {
+        "testType": "function",
+        "functionName": "minimumCharactersForWords",
+        "input": [["this", "that", "they", "them", "their", "there", "time", "is"]],
+        "expect": ["a", "e", "e", "h", "i", "m", "r", "s", "t", "t", "y"]
+    }
+]
