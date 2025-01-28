@@ -1,0 +1,41 @@
+[
+    {
+        "testType": "function",
+        "functionName": "matrix_search",
+        "input": [
+            [
+                ["A", "B", "C", "D", "E"],
+                ["F", "G", "H", "I", "J"],
+                ["K", "L", "M", "A", "B"]
+            ],
+            "ABC"
+        ],
+        "expect": [true, "east"]
+    },
+    {
+        "testType": "function",
+        "functionName": "matrix_search",
+        "input": [
+            [
+                ["A", "B", "C", "D", "E"],
+                ["F", "G", "H", "I", "J"],
+                ["K", "L", "M", "A", "B"]
+            ],
+            "GHI"
+        ],
+        "expect": [true, "east"]
+    },
+    {
+        "testType": "function",
+        "functionName": "matrix_search",
+        "input": [
+            [
+                ["A", "B", "C", "D", "E"],
+                ["F", "G", "H", "I", "J"],
+                ["K", "L", "M", "A", "B"]
+            ],
+            "IHG"
+        ],
+        "expect": [true, "west"]
+    }
+]
