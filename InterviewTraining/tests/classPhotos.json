@@ -1,0 +1,14 @@
+[
+    {
+        "testType": "function",
+        "functionName": "classPhotos",
+        "input": [[5, 8, 1, 3, 4], [6, 9, 2, 4, 5]],
+        "expect": true
+    },
+    {
+        "testType": "function",
+        "functionName": "classPhotos",
+        "input": [[6, 9, 2, 4, 5], [5, 8, 1, 3, 4]],
+        "expect": false
+    }
+]
