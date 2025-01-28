@@ -1,0 +1,38 @@
+[
+    {
+        "testType": "function",
+        "functionName": "minimumWaitingTime",
+        "input": [[3, 2, 1, 2, 6]],
+        "expect": 17
+    },
+    {
+        "testType": "function",
+        "functionName": "minimumWaitingTime",
+        "input": [[2, 1, 1, 1]],
+        "expect": 6
+    },
+    {
+        "testType": "function",
+        "functionName": "minimumWaitingTime",
+        "input": [[1, 2, 4, 5, 2, 1]],
+        "expect": 23
+    },
+    {
+        "testType": "function",
+        "functionName": "minimumWaitingTime",
+        "input": [[25, 30, 2, 1]],
+        "expect": 32
+    },
+    {
+        "testType": "function",
+        "functionName": "minimumWaitingTime",
+        "input": [[1, 1, 1, 1, 1]],
+        "expect": 10
+    },
+    {
+        "testType": "function",
+        "functionName": "minimumWaitingTime",
+        "input": [[7, 9, 2, 3]],
+        "expect": 19
+    }
+]
