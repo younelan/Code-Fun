@@ -1,0 +1,14 @@
+[
+    {
+        "testType": "function",
+        "functionName": "generateDocument",
+        "input": ["a hello world", "hello"],
+        "expect": true
+    },
+    {
+        "testType": "function",
+        "functionName": "generateDocument",
+        "input": ["a", "a"],
+        "expect": true
+    }
+]
