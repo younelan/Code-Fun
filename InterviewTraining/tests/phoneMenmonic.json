@@ -1,0 +1,9 @@
+
+[
+    {
+        "testType": "function",
+        "functionName": "phoneNumberMnemonics",
+        "input": ["23"],
+        "expect": ["2ABC", "3DEF"]
+    }
+]
