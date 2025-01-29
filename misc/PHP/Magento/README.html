@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>Magento.docx</title>
+	<meta name="generator" content="LibreOffice 24.8.2.1 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="00:00:00"/>
+	<style type="text/css">
+		@page { size: 8.5in 11in; margin: 1in }
+		p { line-height: 115%; text-align: left; page-break-inside: auto; orphans: 2; widows: 2; margin-bottom: 0.1in; direction: ltr; background: transparent; page-break-after: auto }
+	</style>
+</head>
+<body lang="en-US" link="#000080" vlink="#800000" bgcolor="#ffffff" dir="ltr"><p style="margin-bottom: 0in">
+<div>Parking in this folder old module I did for an interview test of magento. Probably won't work but this was a magento module</div>
+<font color="#222222">Attached, you will find the movies module
+contains, a non working barebones implementation of a many to many
+data relationship with data defined the magento way. You will also
+find the gift registry module from the developer guide I have been
+studying to learn Magento development. Basically, finishing the
+challenge would involves me understand inside out chapter 3 of the
+Magento Developer guide (frontend) and chapter 4 to implement
+(backend and admin controller).</font></p>
+<p style="margin-bottom: 0in"><font color="#222222"> </font>
+</p>
+<p style="margin-bottom: 0in"><font color="#222222">To implement this
+many to many relationship, we need 3 tables</font></p>
+<p style="margin-bottom: 0in"><font color="#222222"><font size="2" style="font-size: 10pt">·</font></font><font color="#222222"><font face="Times New Roman"><font size="1" style="font-size: 7pt">
+        </font></font></font><font color="#222222"><font size="2" style="font-size: 10pt">Movie
+– with movie id, movie name, etc</font></font></p>
+<p style="margin-bottom: 0in"><font color="#222222"><font size="2" style="font-size: 10pt">·</font></font><font color="#222222"><font face="Times New Roman"><font size="1" style="font-size: 7pt">
+        </font></font></font><font color="#222222"><font size="2" style="font-size: 10pt">Celebrity
+– celebrity_id, bios, etc</font></font></p>
+<p style="margin-bottom: 0in"><font color="#222222"><font size="2" style="font-size: 10pt">·</font></font><font color="#222222"><font face="Times New Roman"><font size="1" style="font-size: 7pt">
+        </font></font></font><font color="#222222"><font size="2" style="font-size: 10pt">Moviem2m
+– many to many link table with 3 fields that maintain the
+relationships  a link_id, movie_id, a celebrity_id</font></font></p>
+<p style="margin-bottom: 0in"><font color="#222222"> </font>
+</p>
+<p style="margin-bottom: 0in"><font color="#222222">Below are the
+basic steps to get the many to many relationship to work. Once the
+data works, it should be relatively straight forward to use it in a
+view as the hardest part (in my humble opinion) is getting the data
+to work.</font></p>
+<p style="margin-bottom: 0in"><font color="#222222"> </font>
+</p>
+<p style="margin-bottom: 0in"><font color="#222222"><font size="2" style="font-size: 10pt">·</font></font><font color="#222222"><font face="Times New Roman"><font size="1" style="font-size: 7pt">
+        </font></font></font><font color="#222222"><font size="2" style="font-size: 10pt">First
+we need to create the standard module directory
+(/app/code/local/Youn/Linkdir ) an standard directories</font></font></p>
+<p style="margin-bottom: 0in"><font color="#222222"><font size="2" style="font-size: 10pt">·</font></font><font color="#222222"><font face="Times New Roman"><font size="1" style="font-size: 7pt">
+        </font></font></font><font color="#222222"><font size="2" style="font-size: 10pt">Then
+we need to declare the module in /app/etc/modules/Youn_Linkdir.xml an
+enable the module</font></font></p>
+<p style="margin-bottom: 0in"><font color="#ff0000"><font size="2" style="font-size: 10pt">·</font></font><font color="#ff0000"><font face="Times New Roman"><font size="1" style="font-size: 7pt">
+        </font></font></font><font color="#ff0000"><font size="2" style="font-size: 10pt"><b>Add
+a standard data helper as &lt;moduledir&gt;/Helper/Data.php</b></font></font></p>
+<p style="margin-bottom: 0in"><font color="#222222">class
+Youn_Movies_Helper_Data extends Mage_Core_Helper_Abstract {</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">	public function
+getMovies()</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">	{</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">    	$collection
+= Mage::getModel('youn_movies/movie')-&gt;getCollection();</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">    	return
+$collection;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">	}</font></p>
+<p style="margin-bottom: 0in"><font color="#222222"> </font>
+</p>
+<p style="margin-bottom: 0in"><font color="#222222">}</font></p>
+<p style="margin-bottom: 0in"><font color="#ff0000"><font size="2" style="font-size: 10pt">·</font></font><font color="#ff0000"><font face="Times New Roman"><font size="1" style="font-size: 7pt">
+        </font></font></font><font color="#ff0000"><font size="2" style="font-size: 10pt"><b>Config.xml:</b></font></font></p>
+<p style="margin-bottom: 0in"><font color="#ff0000"><font size="2" style="font-size: 10pt">·</font></font><font color="#ff0000"><font face="Times New Roman"><font size="1" style="font-size: 7pt">
+        </font></font></font><font color="#ff0000"><font size="2" style="font-size: 10pt"><b>configure
+model tables:</b></font></font></p>
+<p style="margin-bottom: 0in"><font color="#222222">    	&lt;models&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">       
+	&lt;youn_movies&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">           
+	&lt;class&gt;Youn_Movies_Model&lt;/class&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">           
+	&lt;resourceModel&gt;youn_movies_mysql4&lt;/resourceModel&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">       
+	&lt;/youn_movies&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">       
+	&lt;youn_movies_mysql4&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">           
+	&lt;class&gt;Youn_Movies_Model_Mysql4&lt;/class&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">           
+	&lt;entities&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">               
+	&lt;movie&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">                 
+  	&lt;table&gt;youn_movies_movie&lt;/table&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">               
+	&lt;/movie&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">               
+	&lt;celebrity&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">                 
+  	&lt;table&gt;youn_movies_celebrity&lt;/table&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">               
+	&lt;/celebrity&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">                
+	&lt;moviem2m&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">                 
+  	&lt;table&gt;youn_movies_moviem2m&lt;/table&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">               
+	&lt;/moviem2m&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">          
+	&lt;/entities&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">       
+	&lt;/youn_movies_mysql4&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">    	&lt;/models&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#ff0000"><font size="2" style="font-size: 10pt">·</font></font><font color="#ff0000"><font face="Times New Roman"><font size="1" style="font-size: 7pt">
+        </font></font></font><font color="#ff0000"><font size="2" style="font-size: 10pt"><b>declare
+the setup to setup data:</b></font></font></p>
+<p style="margin-bottom: 0in"><font color="#222222">    	&lt;resources&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">       
+	&lt;youn_movies_setup&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">           
+	&lt;setup&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">               
+	&lt;module&gt;Youn_Movies&lt;/module&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">               
+	&lt;class&gt;Youn_Movies_Model_Resource_Setup&lt;/class&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">           
+	&lt;/setup&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">           
+	&lt;connection&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">               
+	&lt;use&gt;core_setup&lt;/use&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">           
+	&lt;/connection&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">       
+	&lt;/youn_movies_setup&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">       
+	&lt;youn_movies_write&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">           
+	&lt;connection&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">               
+	&lt;use&gt;core_write&lt;/use&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">           
+	&lt;/connection&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">       
+	&lt;/youn_movies_write&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">       
+	&lt;youn_movies_read&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">           
+	&lt;connection&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">               
+	&lt;use&gt;core_read&lt;/use&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">           
+	&lt;/connection&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">       
+	&lt;/youn_movies_read&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">    	&lt;/resources&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#ff0000"><font size="2" style="font-size: 10pt">·</font></font><font color="#ff0000"><font face="Times New Roman"><font size="1" style="font-size: 7pt">
+        </font></font></font><font color="#ff0000"><font size="2" style="font-size: 10pt"><b>Declare
+a frontend</b></font></font></p>
+<p style="margin-bottom: 0in"><font color="#222222">    	&lt;routers&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">       
+	&lt;youn_movies&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">           
+	&lt;use&gt;standard&lt;/use&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">           
+	&lt;args&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">               
+	&lt;module&gt;Youn_Movies&lt;/module&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">               
+	&lt;frontName&gt;movies&lt;/frontName&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">           
+	&lt;/args&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">       
+	&lt;/youn_movies&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">    	&lt;/routers&gt;</font></p>
+<p style="margin-bottom: 0in"><font color="#222222"><font size="2" style="font-size: 10pt">·</font></font><font color="#222222"><font face="Times New Roman"><font size="1" style="font-size: 7pt">
+        </font></font></font><font color="#ff0000"><font size="2" style="font-size: 10pt">Declare
+the </font></font><font color="#ff0000"><font size="2" style="font-size: 10pt"><b>setup
+class</b></font></font><font color="#ff0000"><font size="2" style="font-size: 10pt">
+in</font></font><font color="#222222"><font size="2" style="font-size: 10pt">
+[module]/Model/Resource :</font></font></p>
+<p style="margin-bottom: 0in"><font color="#222222">&lt;?php</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">class
+Youn_Movies_Model_Resource_Setup extends
+Mage_Core_Model_Resource_Setup</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">{</font></p>
+<p style="margin-bottom: 0in"><font color="#222222"> </font>
+</p>
+<p style="margin-bottom: 0in"><font color="#222222">}</font></p>
+<p style="margin-bottom: 0in"><font color="#222222"><font size="2" style="font-size: 10pt">·</font></font><font color="#222222"><font face="Times New Roman"><font size="1" style="font-size: 7pt">
+        </font></font></font><font color="#ff0000"><font size="2" style="font-size: 10pt"><b>Declare
+3 SQL tables </b></font></font><font color="#222222"><font size="2" style="font-size: 10pt">(movie,
+celebrity, moviem2m)</font></font><font color="#ff0000"><font size="2" style="font-size: 10pt">
+</font></font><font color="#222222"><font size="2" style="font-size: 10pt">in
+[module]/sql/youn_movies_setup/install-0.1.0.php) like this
+(shortened here but the full table setup in actual file to save space
+in the email) :</font></font></p>
+<p style="margin-bottom: 0in"><font color="#222222">$tableName =
+$installer-&gt;getTable('youn_movies/moviem2m');</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">// Check if the
+table already exists</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">if
+($installer-&gt;getConnection()-&gt;isTableExists($tableName) !=
+true) {</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">	$table =
+$installer-&gt;getConnection()</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">   
+	-&gt;newTable($installer-&gt;getTable('youn_movies/moviem2m'))</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">    	//movie id
+field</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">   
+	-&gt;addColumn('m2m_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null,
+array(</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">       
+	'identity'  =&gt; true,</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">       
+	'unsigned'  =&gt; true,</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">       
+	'nullable'  =&gt; false,</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">       
+	'primary'   =&gt; true,</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">    	), 'Type
+Id')</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">…</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">}</font></p>
+<p style="margin-bottom: 0in"><font color="#ff0000"><font size="2" style="font-size: 10pt">·</font></font><font color="#ff0000"><font face="Times New Roman"><font size="1" style="font-size: 7pt">
+        </font></font></font><font color="#ff0000"><font size="2" style="font-size: 10pt"><b>Create
+data access classes for each table (movies, moviesm2m, celebrity) :</b></font></font></p>
+<p style="margin-bottom: 0in"><font color="#ff0000"><font face="Courier New"><font size="2" style="font-size: 10pt">o</font></font></font><font color="#ff0000"><font face="Times New Roman"><font size="1" style="font-size: 7pt">
+  </font></font></font><font color="#ff0000"><font size="2" style="font-size: 10pt"><b>a
+model in &lt;moduledir&gt;/Model</b></font></font></p>
+<p style="margin-bottom: 0in"><font color="#222222">class
+Youn_Movies_Model_Movie extends Mage_Core_Model_Abstract</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">{</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">	public function
+__construct()</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">	{</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">   
+	$this-&gt;_init('youn_movies/movie');</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">   
+	parent::_construct();</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">	}</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">}</font></p>
+<p style="margin-bottom: 0in"><font color="#ff0000"><font face="Courier New"><font size="2" style="font-size: 10pt">o</font></font></font><font color="#ff0000"><font face="Times New Roman"><font size="1" style="font-size: 7pt">
+  </font></font></font><font color="#ff0000"><font size="2" style="font-size: 10pt"><b>a
+resource Model in &lt;moduledir&gt;/Model/Mysql4</b></font></font></p>
+<p style="margin-bottom: 0in"><font color="#222222">class
+Youn_Movies_Model_Mysql4_Movie extends
+Mage_Core_Model_Mysql4_Abstract</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">{</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">	public function
+_construct()</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">	{</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">   
+	$this-&gt;_init('youn_movies/movie', 'movie_id');</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">	}</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">}</font></p>
+<p style="margin-bottom: 0in"><font color="#ff0000"><font face="Courier New"><font size="2" style="font-size: 10pt">o</font></font></font><font color="#ff0000"><font face="Times New Roman"><font size="1" style="font-size: 7pt">
+  </font></font></font><font color="#ff0000"><font size="2" style="font-size: 10pt"><b>a
+collection in &lt;moduledir&gt;/Model/Mysql4/&lt;tablename&gt;/Collection.php</b></font></font></p>
+<p style="margin-bottom: 0in"><font color="#222222">class
+Youn_Movies_Model_Mysql4_Movie_Collection extends
+Mage_Core_Model_Mysql4_Collection_Abstract</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">{                
+                                                                     
+              </font>
+</p>
+<p style="margin-bottom: 0in"><font color="#222222">	public function
+_construct()</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">	{</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">   
+	$this-&gt;_init('youn_movies/movie');</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">   
+	parent::_construct();</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">	}</font></p>
+<p style="margin-bottom: 0in"><font color="#222222">}</font></p>
+<p style="margin-bottom: 0in"><font color="#222222"><font size="2" style="font-size: 10pt">·</font></font><font color="#222222"><font face="Times New Roman"><font size="1" style="font-size: 7pt">
+        </font></font></font><font color="#222222"><font size="2" style="font-size: 10pt">Once
+it works, I woul work on display the data by first creating an
+controllers/IndexAction.php controller then display the data with a
+block.</font></font></p>
+<p style="margin-bottom: 0in"><br/>
+
+</p>
+</body>
+</html>
