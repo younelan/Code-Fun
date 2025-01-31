@@ -1,0 +1,42 @@
+[
+    {
+        "testType": "tree",
+        "functionName": "branchSums",
+        "tree": {
+            "nodes": [
+                {"id": "1", "value": 1, "left": "2", "right": "3"},
+                {"id": "2", "value": 2, "left": null, "right": null},
+                {"id": "3", "value": 3, "left": null, "right": null}
+            ],
+            "rootId": "1"
+        },
+        "expect": [3, 4]
+    },
+    {
+        "testType": "tree",
+        "functionName": "branchSums",
+        "tree": {
+            "nodes": [
+                {"id": "1", "value": 1, "left": "2", "right": null},
+                {"id": "2", "value": 2, "left": null, "right": null}
+            ],
+            "rootId": "1"
+        },
+        "expect": [3]
+    },
+    {
+        "testType": "tree",
+        "functionName": "branchSums",
+        "tree": {
+            "nodes": [
+                {"id": "1", "value": 1, "left": "2", "right": "3"},
+                {"id": "2", "value": 2, "left": "4", "right": "5"},
+                {"id": "3", "value": 3, "left": null, "right": null},
+                {"id": "4", "value": 4, "left": null, "right": null},
+                {"id": "5", "value": 5, "left": null, "right": null}
+            ],
+            "rootId": "1"
+        },
+        "expect": [7, 8, 4]
+    }
+]
