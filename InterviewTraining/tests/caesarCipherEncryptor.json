@@ -1,0 +1,20 @@
+[
+    {
+        "testType": "function",
+        "functionName": "caesarCipherEncryptor",
+        "input": ["abc", 3],
+        "expect": "def"
+    },
+    {
+        "testType": "function",
+        "functionName": "caesarCipherEncryptor",
+        "input": ["xyz", 5],
+        "expect": "cde"
+    },
+    {
+        "testType": "function",
+        "functionName": "caesarCipherEncryptor",
+        "input": ["abc", 26],
+        "expect": "abc"
+    }
+]
