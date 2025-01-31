@@ -1,0 +1,16 @@
+[
+	{
+    "string": "abcdcaf",
+    "expected": 1
+	},
+	{
+"string": "faadabcbbebdf",
+  "expected": 6
+	},
+
+ 	{
+    "string": "a",
+  "expected": 0
+	}
+
+]
