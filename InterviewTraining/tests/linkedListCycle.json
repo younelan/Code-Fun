@@ -1,0 +1,24 @@
+[
+    {
+        "testType": "list",
+        "functionName": "hasCycle",
+        "nodes": [
+            {"id": "A", "value": 1, "next": "B"},
+            {"id": "B", "value": 2, "next": "C"},
+            {"id": "C", "value": 3, "next": null}
+        ],
+        "headId": "A",
+        "expect": false
+    },
+    {
+        "testType": "list",
+        "functionName": "hasCycle",
+        "nodes": [
+            {"id": "A", "value": 1, "next": "B"},
+            {"id": "B", "value": 2, "next": "C"},
+            {"id": "C", "value": 3, "next": "A"}
+        ],
+        "headId": "A",
+        "expect": true
+    }
+]
