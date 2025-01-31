@@ -1,0 +1,20 @@
+[
+    {
+        "testType": "function",
+        "functionName": "firstDuplicateValue",
+        "input": [[2, 1, 5, 2, 3, 3, 4]],
+        "expect": 2
+    },
+    {
+        "testType": "function",
+        "functionName": "firstDuplicateValue",
+        "input": [[2, 1, 5, 3, 3, 2, 4]],
+        "expect": 3
+    },
+    {
+        "testType": "function",
+        "functionName": "firstDuplicateValue",
+        "input": [[3, 1, 3, 1, 1, 4, 4]],
+        "expect": 1
+    }
+]
