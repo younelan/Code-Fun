@@ -45,15 +45,13 @@ class Node {
         this.name = name;
         this.children = [];
     }
-
-    addChild(name) {
-        this.children.push(new Node(name));
+    addChild(childNode) {
+        this.children.push(childNode);
         return this;
     }
-
     depthFirstSearch(array) {
-        // Write your code here
-        // Remember to visit each node and its children in the correct order
+        array.push(this.name);
+        this.children.forEach(child => child.depthFirstSearch(array));
         return array;
     }
 }
