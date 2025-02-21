@@ -42,9 +42,9 @@ Note:
 - A single node tree should return 0
 - The height is the number of edges, not nodes
 */
-
 function binarySearchTreeHeight(root) {
-    return 0;
+    if (!root) return 0;
+    return 1 + Math.max(binarySearchTreeHeight(root.left), binarySearchTreeHeight(root.right));
 }
 
 module.exports = binarySearchTreeHeight;
