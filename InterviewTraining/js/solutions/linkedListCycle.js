@@ -42,9 +42,13 @@ Hints:
 - What happens when two people run around a track at different speeds?
 - Consider memory usage - can you solve it with O(1) space?
 */
-
 function hasCycle(head) {
-    // Write your code here
+    let slow = head, fast = head;
+    while (fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+        if (slow === fast) return true;
+    }
     return false;
 }
 
