@@ -88,7 +88,6 @@ Remember:
 - Recursively build left and right subtrees using remaining elements
 - This ensures the tree remains balanced
 */
-
 class BST {
     constructor(value) {
         this.value = value;
