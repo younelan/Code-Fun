@@ -53,9 +53,28 @@ Good luck with your event planning!
 */
 
 function tandemBicycle(redShirtSpeeds, blueShirtSpeeds, fastest) {
+    // Sort both arrays
+    const sortedRed = redShirtSpeeds.sort((a, b) => a - b);
+    const sortedBlue = blueShirtSpeeds.sort((a, b) => a - b);
+    
     let totalSpeed = 0;
-
-
+    const length = sortedRed.length;
+    
+    // For fastest=true, we want to pair highest with lowest
+    // For fastest=false, we want to pair similar speeds together
+    for (let i = 0; i < length; i++) {
+        const redIndex = fastest ? length - 1 - i : i;
+        const blueIndex = i;
+        
+        // Take the maximum speed between the paired riders
+        const speedAtIndex = Math.max(
+            sortedRed[redIndex],
+            sortedBlue[blueIndex]
+        );
+        
+        totalSpeed += speedAtIndex;
+    }
+    
     return totalSpeed;
 }
 
