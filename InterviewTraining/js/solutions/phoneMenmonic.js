@@ -55,8 +55,45 @@ Hints:
 */
 
 function phoneNumberMnemonics(phoneNumber) {
-    // Write your code here
-    return [];
+    // Digit to letters mapping
+    const digitMap = {
+        '0': ['0'],
+        '1': ['1'],
+        '2': ['A', 'B', 'C'],
+        '3': ['D', 'E', 'F'],
+        '4': ['G', 'H', 'I'],
+        '5': ['J', 'K', 'L'],
+        '6': ['M', 'N', 'O'],
+        '7': ['P', 'Q', 'R', 'S'],
+        '8': ['T', 'U', 'V'],
+        '9': ['W', 'X', 'Y', 'Z']
+    };
+    
+    const results = [];
+    
+    function backtrack(index, currentString) {
+        // Base case: if we've processed all digits, add the combination
+        if (index === phoneNumber.length) {
+            results.push(currentString);
+            return;
+        }
+        
+        // Get current digit and its possible letters
+        const currentDigit = phoneNumber[index];
+        const letters = digitMap[currentDigit];
+        
+        // Try each possible letter for current digit
+        for (const letter of letters) {
+            backtrack(index + 1, currentString + letter);
+        }
+    }
+    
+    // Start the recursive process
+    if (phoneNumber.length > 0) {
+        backtrack(0, '');
+    }
+    
+    return results;
 }
 
 module.exports = phoneNumberMnemonics;

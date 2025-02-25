@@ -4,6 +4,6 @@
         "testType": "function",
         "functionName": "phoneNumberMnemonics",
         "input": ["23"],
-        "expect": ["2ABC", "3DEF"]
+        "expect": ["AD","AE","AF","BD","BE","BF","CD","CE","CF"] 
     }
 ]
