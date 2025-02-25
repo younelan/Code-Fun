@@ -42,8 +42,31 @@ Hints:
 */
 
 function binarySearch(array, target) {
-    // Write your code here
-    // Remember to handle edge cases
+    let left = 0;
+    let right = array.length - 1;
+    
+    while (left <= right) {
+        // Calculate middle index
+        // Using (left + right) / 2 can cause integer overflow
+        // This formula is safer
+        const mid = left + Math.floor((right - left) / 2);
+        
+        // Found the target
+        if (array[mid] === target) {
+            return mid;
+        }
+        
+        // Target is in left half
+        if (target < array[mid]) {
+            right = mid - 1;
+        }
+        // Target is in right half
+        else {
+            left = mid + 1;
+        }
+    }
+    
+    // Target not found
     return -1;
 }
 
