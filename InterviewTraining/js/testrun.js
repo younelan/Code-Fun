@@ -23,6 +23,11 @@ if (process.argv.length < 3) {
 }
 
 let moduleName = process.argv[2];
+if (!moduleName) {
+    console.log("Usage: node testrun.js <moduleName>");
+    process.exit(1);
+}
+
 // Remove .js extension if present.
 if (moduleName.endsWith('.js')) {
     moduleName = moduleName.slice(0, -3);
@@ -36,9 +41,12 @@ try {
     process.exit(1);
 }
 
+// Load tests - might return empty array if no test file exists
 const tests = loadTests(moduleName);
+
+// Early exit with message if no tests found
 if (!tests || tests.length === 0) {
-    console.log(`No tests found for module "${moduleName}"`);
+    console.log(getColorStr(`No tests found for module "${moduleName}"`, "WARNING"));
     process.exit(0);
 }
 
@@ -49,8 +57,19 @@ let failedCount = 0;
 
 tests.forEach((test, idx) => {
     let result;
-    // Make sure we get the expected value, with proper fallback
     const expected = test.expect !== undefined ? test.expect : test.expected;
+    const functionName = test.functionName || test.method;
+
+    // Verify the exact function being tested exists
+    if (typeof solution === 'function' && solution.name !== functionName) {
+        console.error(getColorStr(`Function name mismatch: expected "${functionName}" but found "${solution.name}"`, "FAIL"));
+        process.exit(1);
+    }
+
+    if (typeof solution !== 'function' && typeof solution[functionName] !== 'function') {
+        console.error(getColorStr(`Function "${functionName}" not found in module "${moduleName}"`, "FAIL"));
+        process.exit(1);
+    }
 
     if (test.testType === "graph") {
         // Graph tests require building a graph using a class.
@@ -102,15 +121,11 @@ tests.forEach((test, idx) => {
         }
     } 
     else if (test.testType === "function") {
-        // Generic function tests.
         const input = test.input;
         if (typeof solution === "function") {
             result = Array.isArray(input) ? solution(...input) : solution(input);
-        } else if (typeof solution.solve === "function") {
-            result = Array.isArray(input) ? solution.solve(...input) : solution.solve(input);
-        } else {
-            console.error(`Solution for module "${moduleName}" does not export a callable function.`);
-            process.exit(1);
+        } else if (typeof solution[functionName] === "function") {
+            result = Array.isArray(input) ? solution[functionName](...input) : solution[functionName](input);
         }
     } 
     else {
