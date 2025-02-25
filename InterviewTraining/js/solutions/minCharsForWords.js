@@ -45,7 +45,35 @@ Hints:
 */
 
 function minimumCharactersForWords(words) {
-    const result = [];    
+    // Track maximum frequency needed for each character
+    const maxCharFrequencies = {};
+    
+    // Process each word
+    for (const word of words) {
+        // Count frequencies in current word
+        const currentWordFreq = {};
+        for (const char of word) {
+            currentWordFreq[char] = (currentWordFreq[char] || 0) + 1;
+        }
+        
+        // Update max frequencies by comparing with current word
+        for (const [char, count] of Object.entries(currentWordFreq)) {
+            maxCharFrequencies[char] = Math.max(
+                count,
+                maxCharFrequencies[char] || 0
+            );
+        }
+    }
+    
+    // Build result array - add each character the required number of times
+    const result = [];
+    for (const [char, freq] of Object.entries(maxCharFrequencies)) {
+        // Add character freq times
+        for (let i = 0; i < freq; i++) {
+            result.push(char);
+        }
+    }
+    
     return result.sort();
 }
 

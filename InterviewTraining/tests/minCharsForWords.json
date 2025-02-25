@@ -3,7 +3,7 @@
         "testType": "function",
         "functionName": "minimumCharactersForWords",
         "input": [["this", "that", "did", "deed", "them!", "a"]],
-        "expect": ["t", "h", "i", "s", "a", "d", "e", "m", "!"]
+        "expect": ["!","a","d","d","e","e","h","i","m","s","t","t"]
     },
     {
         "testType": "function",
