@@ -49,7 +49,8 @@ let failedCount = 0;
 
 tests.forEach((test, idx) => {
     let result;
-    const expected = test.expect || test.expected;
+    // Make sure we get the expected value, with proper fallback
+    const expected = test.expect !== undefined ? test.expect : test.expected;
 
     if (test.testType === "graph") {
         // Graph tests require building a graph using a class.
@@ -117,7 +118,8 @@ tests.forEach((test, idx) => {
         process.exit(1);
     }
 
-    const passed = JSON.stringify(result) === JSON.stringify(expected);
+    // Update comparison to handle edge cases like 0
+    const passed = equals(result, expected);
     if (passed) {
         passedCount++;
         console.log(getColorStr(`Test ${idx + 1}: Passed`, "OKGREEN"));
@@ -128,8 +130,9 @@ tests.forEach((test, idx) => {
     if (test.functionName || test.method) {
         console.log(`  Test Name: ${test.functionName || test.method}`);
     }
-    console.log(`  Returned: ${JSON.stringify(result)}`);
-    console.log(`  Expected: ${JSON.stringify(expected)}\n`);
+    // Update result display to handle all types properly
+    console.log(`  Returned: ${formatValue(result)}`);
+    console.log(`  Expected: ${formatValue(expected)}\n`);
 });
 
 const totalTests = passedCount + failedCount;
@@ -138,3 +141,14 @@ console.log(getColorStr(`Passed: ${passedCount}`, "OKGREEN"));
 console.log(getColorStr(`Failed: ${failedCount}`, "FAIL"));
 console.log(getColorStr(`Success Ratio: ${(passedCount / totalTests * 100).toFixed(2)}%`, "OKCYAN"));
 console.log();
+
+// Add these helper functions at the end of the file
+function equals(a, b) {
+    return JSON.stringify(a) === JSON.stringify(b);
+}
+
+function formatValue(value) {
+    if (value === undefined) return 'undefined';
+    if (value === null) return 'null';
+    return JSON.stringify(value);
+}
