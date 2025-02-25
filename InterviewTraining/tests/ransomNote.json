@@ -1,13 +1,13 @@
 [
     {
         "testType": "function",
-        "functionName": "generateDocument",
+        "functionName": "ransomNote",
         "input": ["a hello world", "hello"],
         "expect": true
     },
     {
         "testType": "function",
-        "functionName": "generateDocument",
+        "functionName": "ransomNote",
         "input": ["a", "a"],
         "expect": true
     }
