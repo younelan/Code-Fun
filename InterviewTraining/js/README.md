@@ -35,7 +35,7 @@ chmod +x runall
 
 ### String Manipulation
 - **caesarCipherEncryptor**: Implement Caesar cipher [O(n)]
-- **generateDocument**: Can you make this document from given characters? [O(n)]
+- **ransomNote**: Can you make this document from given characters? [O(n)]
 - **generateIPAddresses**: Generate all valid IP addresses from string [O(1)]
 - **matrix_str_search**: Search string in 2D matrix [O(n*m)]
 - **minCharsForWords**: Minimum chars needed to form words [O(n*k)]
