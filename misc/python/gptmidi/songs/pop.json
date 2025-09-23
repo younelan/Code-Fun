@@ -1,0 +1,60 @@
+{
+  "tempo": 120,
+  "time_signature": [4, 4],
+  "duration_seconds": 120,
+  "tracks": [
+    {
+      "name": "Drums",
+      "instrument": 0,
+      "channel": 9,
+      "pattern": [
+        { "pitches": [42], "velocity": 60, "duration": 240 },
+        { "pitches": [42], "velocity": 60, "duration": 240 },
+        { "pitches": [36], "velocity": 80, "duration": 240 },
+        { "pitches": [42], "velocity": 60, "duration": 240 },
+        { "pitches": [42], "velocity": 60, "duration": 240 },
+        { "pitches": [38], "velocity": 70, "duration": 240 },
+        { "pitches": [36], "velocity": 80, "duration": 240 },
+        { "pitches": [42], "velocity": 60, "duration": 240 }
+      ]
+    },
+    {
+      "name": "Bass",
+      "instrument": 33,
+      "channel": 1,
+      "pattern": [
+        { "pitches": [48], "velocity": 70, "duration": 480 },
+        { "pitches": [55], "velocity": 70, "duration": 480 },
+        { "pitches": [57], "velocity": 70, "duration": 480 },
+        { "pitches": [53], "velocity": 70, "duration": 480 }
+      ]
+    },
+    {
+      "name": "Guitar",
+      "instrument": 24,
+      "channel": 2,
+      "pattern": [
+        { "pitches": [60,64,67], "velocity": 75, "duration": 960 },
+        { "pitches": [67,71,74], "velocity": 75, "duration": 960 },
+        { "pitches": [69,72,76], "velocity": 75, "duration": 960 },
+        { "pitches": [65,69,72], "velocity": 75, "duration": 960 }
+      ]
+    },
+    {
+      "name": "Piano",
+      "instrument": 0,
+      "channel": 3,
+      "pattern": [
+        { "pitches": [60,64,67], "velocity": 70, "duration": 480 },
+        { "pitches": [60,64,67], "velocity": 70, "duration": 480 },
+        { "pitches": [67,71,74], "velocity": 70, "duration": 480 },
+        { "pitches": [67,71,74], "velocity": 70, "duration": 480 },
+        { "pitches": [69,72,76], "velocity": 70, "duration": 480 },
+        { "pitches": [69,72,76], "velocity": 70, "duration": 480 },
+        { "pitches": [65,69,72], "velocity": 70, "duration": 480 },
+        { "pitches": [65,69,72], "velocity": 70, "duration": 480 }
+      ]
+    }
+  ]
+}
+
