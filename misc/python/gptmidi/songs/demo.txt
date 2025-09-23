@@ -1,0 +1,7 @@
+0 On ch=1 n=60 v=64 t=0
+0 Off ch=1 n=60 v=64 t=480
+0 On ch=1 n=62 v=64 t=960
+0 Off ch=1 n=62 v=64 t=1440
+0 On ch=1 n=64 v=64 t=1920
+0 Off ch=1 n=64 v=64 t=2400
+
