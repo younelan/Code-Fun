@@ -102,49 +102,9 @@ def create_midi(input_file, output_file):
                                   program=tdata["instrument"],
                                   channel=tdata["channel"], time=0))
 
-        pattern = tdata["pattern"]
-        pattern_ticks = sum(n["duration"] for n in pattern)
-        full_repeats  = total_ticks // pattern_ticks
-        remainder     = total_ticks - full_repeats * pattern_ticks
-
-        print(f"Track '{tdata['name']}': {full_repeats}×pattern_ticks={pattern_ticks}, rem={remainder}")
-
-        def play_section(reps, rem):
-            tick_cursor = 0
-            for i in range(reps):
-                for note_idx, note in enumerate(pattern):
-                    vnode = random_variation(note, i, note_idx, tdata)
-
-                    # softened swung-eighths: long ~1.45×, short ~0.55× for a more natural feel
-                    dur = vnode["duration"]
-                    if tdata.get("swing") and dur in (120, 240):
-                        if note_idx % 2 == 0:
-                            dur = max(1, int(dur * 1.45))
-                        else:
-                            dur = max(1, int(dur * 0.55))
-                        vnode["duration"] = dur
-
-                    # write notes: simultaneous note_on (time=0) then note_off using duration
-                    for p in vnode["pitches"]:
-                        track.append(mido.Message('note_on',
-                                                  note=p,
-                                                  velocity=vnode["velocity"],
-                                                  time=0,
-                                                  channel=tdata["channel"]))
-                    for p in vnode["pitches"]:
-                        track.append(mido.Message('note_off',
-                                                  note=p,
-                                                  velocity=vnode["velocity"],
-                                                  time=vnode["duration"],
-                                                  channel=tdata["channel"]))
-                    tick_cursor += vnode["duration"]
-
-            # partial remainder
-            acc = 0
+        def play_pattern(pattern, iter_idx):
             for note_idx, note in enumerate(pattern):
-                if acc + note["duration"] > rem:
-                    break
-                vnode = random_variation(note, reps, note_idx, tdata)
+                vnode = random_variation(note, iter_idx, note_idx, tdata)
                 dur = vnode["duration"]
                 if tdata.get("swing") and dur in (120, 240):
                     if note_idx % 2 == 0:
@@ -154,20 +114,28 @@ def create_midi(input_file, output_file):
                     vnode["duration"] = dur
 
                 for p in vnode["pitches"]:
-                    track.append(mido.Message('note_on',
-                                              note=p,
-                                              velocity=vnode["velocity"],
-                                              time=0,
-                                              channel=tdata["channel"]))
+                    track.append(mido.Message('note_on', note=p, velocity=vnode["velocity"], time=0, channel=tdata["channel"]))
                 for p in vnode["pitches"]:
-                    track.append(mido.Message('note_off',
-                                              note=p,
-                                              velocity=vnode["velocity"],
-                                              time=vnode["duration"],
-                                              channel=tdata["channel"]))
-                acc += vnode["duration"]
+                    track.append(mido.Message('note_off', note=p, velocity=vnode["velocity"], time=vnode["duration"], channel=tdata["channel"]))
 
-        play_section(full_repeats, remainder)
+        if "patterns" in tdata and "structure" in tdata:
+            print(f"Track '{tdata['name']}': playing structure {tdata['structure']}")
+            for i, pattern_name in enumerate(tdata["structure"]):
+                pattern = tdata["patterns"].get(pattern_name)
+                if pattern:
+                    play_pattern(pattern, i)
+                else:
+                    print(f"Warning: Pattern '{pattern_name}' not found in track '{tdata['name']}'")
+        elif "pattern" in tdata:
+            pattern = tdata["pattern"]
+            pattern_ticks = sum(n["duration"] for n in pattern)
+            if pattern_ticks == 0:
+                print(f"Track '{tdata['name']}': has a pattern with 0 duration, skipping")
+                continue
+            full_repeats = total_ticks // pattern_ticks
+            print(f"Track '{tdata['name']}': {full_repeats}×pattern_ticks={pattern_ticks}")
+            for i in range(full_repeats):
+                play_pattern(pattern, i)
 
     mid.save(output_file)
     print(f"Saved '{output_file}' ({duration_s}s at {bpm} BPM)")
