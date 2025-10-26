@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$ROOT_DIR"
+
+MODULES=(
+  3sum
+  depthFirstSearch
+  linkedListCycle
+  binarySearchTreeHeight
+  bstTraverse
+  binsearch
+  smallestDifference
+  runLengthEncoding
+  productArray
+  phoneMenmonic
+  minCharsForWords
+  matrix_str_search
+  generateIPAddresses
+  firstDuplicateValue
+  mergeIntervals
+  largestRange
+  longestPeak
+  linkedListDupe
+  isMonotonic
+  ransomNote
+  minWaitTime
+  classPhotos
+  caesarCipherEncryptor
+  minHeightBst
+  bstInsertRemove
+  branchSums
+  findThreeLargestNumbers
+  validateBst
+  spiralTraverse
+  tandemBicycle
+  subarraySort
+)
+
+for m in "${MODULES[@]}"; do
+  echo "========================================"
+  echo "Running tests for: $m"
+  # If tests contain graph/class tests, run without the New stub; otherwise
+  # compile with a small stub so `New` is defined and the runner builds.
+  if grep -Eq '"testType"[[:space:]]*:[[:space:]]*"graph"' "../tests/${m}.json"; then
+    if ! go run -tags=problem problems/testrun_local.go "problems/${m}.go" -- "$m"; then
+      echo "Tests for $m failed (or runner errored)"
+    fi
+  else
+    # If the problem file already declares a New constructor, don't include stub.
+    if grep -Eq '^func[[:space:]]+New[[:space:]]*\(' "problems/${m}.go"; then
+      if ! go run -tags=problem problems/testrun_local.go "problems/${m}.go" -- "$m"; then
+        echo "Tests for $m failed (or runner errored)"
+      fi
+    else
+      if ! go run -tags="problem problem_stub" problems/testrun_local.go problems/new_stub.go "problems/${m}.go" -- "$m"; then
+        echo "Tests for $m failed (or runner errored)"
+      fi
+    fi
+  fi
+done
+
+echo "Done."
