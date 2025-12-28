@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$ROOT_DIR"
+
+MODULES=(
+  3sum
+  depthFirstSearch
+  linkedListCycle
+  binarySearchTreeHeight
+  bstTraverse
+  binsearch
+  smallestDifference
+  runLengthEncoding
+  productArray
+  phoneMenmonic
+  minCharsForWords
+  matrix_str_search
+  generateIPAddresses
+  firstDuplicateValue
+  mergeIntervals
+  largestRange
+  longestPeak
+  linkedListDupe
+  isMonotonic
+  ransomNote
+  minWaitTime
+  classPhotos
+  caesarCipherEncryptor
+  minHeightBst
+  bstInsertRemove
+  branchSums
+  findThreeLargestNumbers
+  validateBst
+  spiralTraverse
+  tandemBicycle
+  subarraySort
+)
+
+for m in "${MODULES[@]}"; do
+  echo "========================================"
+  echo "Running solution tests for: $m"
+  sol="solutions/${m}.go"
+  if [ ! -f "$sol" ]; then
+    echo "  No solution file found at $sol — skipping"
+    continue
+  fi
+
+  (cd solutions && if ! go run -tags=problem testrun_solution.go "${m}.go" -- "$m"; then
+    echo "Tests for $m failed (or runner errored)"
+  fi)
+
+done
+
+echo "Done."
