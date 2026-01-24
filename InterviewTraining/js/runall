@@ -1,4 +1,42 @@
+#!/usr/bin/env bash
+export FORCE_COLOR=1
+export TERM=${TERM:-xterm-256color}
+
 node testrun.js 3sum
+node testrun.js depthFirstSearch
+node testrun.js linkedListCycle.js 
+node testrun.js binarySearchTreeHeight.js 
+node testrun.js bstTraverse.js 
+node testrun.js binsearch.js 
+node testrun.js smallestDifference
+node testrun.js runLengthEncoding
+node testrun.js productArray
+node testrun.js phoneMenmonic
+node testrun.js minCharsForWords
+node testrun.js matrix_str_search
+node testrun.js generateIPAddresses
+node testrun.js firstDuplicateValue
+node testrun.js mergeIntervals
+node testrun.js largestRange
+node testrun.js matrix_str_search
+node testrun.js longestPeak
+node testrun.js linkedListDupe
+node testrun.js isMonotonic
+node testrun.js ransomNote
+node testrun.js firstDuplicateValue
+node testrun.js minWaitTime
+node testrun.js largestRange
+node testrun.js classPhotos
+node testrun.js caesarCipherEncryptor
+node testrun.js minHeightBst
+node testrun.js bstInsertRemove
+node testrun.js branchSums
+node testrun.js findThreeLargestNumbers
+node testrun.js validateBst
+node testrun.js spiralTraverse
+node testrun.js tandemBicycle
+node testrun.js subarraySort
+
 node testrun.js depthFirstSearch
 node testrun.js linkedListCycle.js 
 node testrun.js binarySearchTreeHeight.js 
